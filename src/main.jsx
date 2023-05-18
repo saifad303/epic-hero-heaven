@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider.jsx";
 import App from "./pages/App.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import AllToys from "./pages/AddToy.jsx";
+import AllToys from "./pages/AllToys.jsx";
 import ToyDetail from "./pages/ToyDetail.jsx";
 import AddToy from "./pages/AddToy.jsx";
 import MyToys from "./pages/MyToys.jsx";
