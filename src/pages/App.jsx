@@ -1,14 +1,32 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 const App = () => {
+  const location = useLocation();
+  const { id } = useParams();
+  let flag = 0;
+  console.log(location.pathname);
+
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/toys" ||
+    location.pathname === `/toy/${id}` ||
+    location.pathname === "/add-toy" ||
+    location.pathname === "/my-toys" ||
+    location.pathname === "/blogs" ||
+    location.pathname === "/sign-in" ||
+    location.pathname === "/sign-up"
+  ) {
+    flag = 1;
+  }
+
   return (
     <div>
-      <Header></Header>
+      {flag && <Header></Header>}
       <Outlet></Outlet>
-      <Footer></Footer>
+      {flag && <Footer></Footer>}
     </div>
   );
 };

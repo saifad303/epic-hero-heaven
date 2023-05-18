@@ -8,8 +8,8 @@ const AddToy = () => {
 
   return (
     <div className="w-[300px] xsm:w-[490px] sm:w-[620px] lg:w-[950px] xl:w-[1200px] mx-auto mt-[100px] my-10">
-      <div class="max-w-lg mb-10">
-        <h3 class="text-slate-700 text-xl font-bold sm:text-2xl">
+      <div className="max-w-lg mb-10">
+        <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">
           Add a new toy
         </h3>
       </div>
@@ -111,7 +111,7 @@ const AddToy = () => {
         <div>
           <button
             type="submit"
-            class="text-white bg-[#EA6067] font-medium rounded-full text-sm px-12 py-3 text-center mr-2 mb-2 mt-9"
+            className="text-white bg-[#EA6067] font-medium rounded-full text-sm px-12 py-3 text-center mr-2 mb-2 mt-9"
           >
             Submit
           </button>

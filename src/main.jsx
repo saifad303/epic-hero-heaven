@@ -11,6 +11,7 @@ import MyToys from "./pages/MyToys.jsx";
 import Blogs from "./pages/Blogs.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import NotFound from "./pages/NotFound.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/blogs", element: <Blogs></Blogs> },
       { path: "/sign-in", element: <SignIn></SignIn> },
       { path: "/sign-up", element: <SignUp></SignUp> },
+      { path: "*", element: <NotFound></NotFound> },
     ],
   },
 ]);
