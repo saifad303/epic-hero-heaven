@@ -45,14 +45,6 @@ const AllToys = () => {
             One Destination: Dive into Our Complete Product Collection
           </p>
         </div>
-        <div className="mt-3 md:mt-0">
-          <a
-            href=""
-            className="inline-block px-4 py-2 text-white duration-150 font-medium bg-[#EA6067] rounded-lg  md:text-sm"
-          >
-            Add toy
-          </a>
-        </div>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
