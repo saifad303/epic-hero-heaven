@@ -6,6 +6,15 @@ import Card from "./Card";
 const ShopByCategory = () => {
   return (
     <div className="w-[300px] xsm:w-[490px] sm:w-[620px] lg:w-[950px] xl:w-[1200px] mx-auto mt-[100px]">
+      <div className="max-w-xl mx-auto space-y-3 mt-[130px] mb-[40px]">
+        <p className="text-slate-700 text-center text-3xl font-semibold sm:text-4xl">
+          Shop By Category
+        </p>
+        <p className="text-center text-slate-500">
+          Indulge in a wonderland of options explore enchanting toy categories
+          tailored to spark imagination
+        </p>
+      </div>
       <Tabs>
         <TabList>
           <Tab>
@@ -35,14 +44,14 @@ const ShopByCategory = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <div className=" flex flex-col xsm:flex-row gap-4">
+          <div className=" grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card></Card>
             <Card></Card>
             <Card></Card>
           </div>
         </TabPanel>
         <TabPanel>
-          <div className=" flex flex-col xsm:flex-row gap-4">
+          <div className=" grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card></Card>
             <Card></Card>
             <Card></Card>

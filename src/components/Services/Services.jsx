@@ -7,30 +7,30 @@ const Services = () => {
         <img src="/img/free-shipping-icon.svg" alt="" className="w-7 h-7" />
       ),
       title: "Free shipping",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius.",
+      desc: "Seamless Shopping Experience: Enjoy Free Shipping on All Orders",
     },
     {
       icon: (
         <img src="/img/customer-service-icon.svg" alt="" className="w-7 h-7" />
       ),
       title: "24h support",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius.",
+      desc: "Your Needs, Anytime: Enjoy Our 24/7 Service Commitment",
     },
     {
       icon: <img src="/img/payment-icon.svg" alt="" className="w-7 h-7" />,
       title: "Secure payment",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue, nisl eget molestie varius.",
+      desc: "Protecting Your Transactions: Experience Safe and Secure Payments.",
     },
   ];
 
   return (
-    <section className="py-14">
+    <section className="">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
-        <div className="max-w-xl mx-auto space-y-3">
-          <p className="text-gray-800 text-center text-3xl font-semibold sm:text-4xl">
+        <div className="max-w-xl mt-[90px] mx-auto space-y-3">
+          <p className="text-slate-700 text-center text-3xl font-semibold sm:text-4xl">
             Our services
           </p>
-          <p className="text-center">
+          <p className="text-center text-slate-500">
             Where Imagination Meets Delight: Explore Our Enchanting Collection
             of Toys and Bring Smiles to Every Child's Face!
           </p>
@@ -45,10 +45,10 @@ const Services = () => {
                 <div className="w-12 h-12 border text-indigo-600 rounded-full flex items-center justify-center">
                   {item.icon}
                 </div>
-                <h4 className="text-lg text-gray-800 font-semibold">
+                <h4 className="text-lg text-slate-700 font-semibold">
                   {item.title}
                 </h4>
-                <p>{item.desc}</p>
+                <p className=" text-slate-400">{item.desc}</p>
               </li>
             ))}
           </ul>

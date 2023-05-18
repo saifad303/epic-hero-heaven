@@ -3,26 +3,16 @@ import React from "react";
 const Gallery = () => {
   return (
     <div className="w-[300px] xsm:w-[490px] sm:w-[620px] lg:w-[950px] xl:w-[1200px] mx-auto">
-      <div className="flex flex-col xsm:flex-row items-center justify-start py-4 md:py-8 flex-wrap">
-        <button
-          type="button"
-          className="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800"
-        >
-          Marvel
-        </button>
-        <button
-          type="button"
-          className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800"
-        >
-          DC
-        </button>
-        <button
-          type="button"
-          className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800"
-        >
-          Transformers
-        </button>
+      <div className="max-w-xl mx-auto space-y-3 mt-[130px] mb-[50px]">
+        <p className="text-slate-700 text-center text-3xl font-semibold sm:text-4xl">
+          Photo Gallery
+        </p>
+        <p className="text-center text-slate-500">
+          Toy Treasures Unleashed: Step into a Captivating Visual Showcase of
+          Endless Playtime Delights
+        </p>
       </div>
+
       <div className="grid grid-cols-1 xsm:grid-cols-2  md:grid-cols-3 xl:grid-cols-4 gap-4">
         <div>
           <img
