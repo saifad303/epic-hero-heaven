@@ -7,7 +7,6 @@ const App = () => {
   const location = useLocation();
   const { id } = useParams();
   let flag = 0;
-  console.log(location.pathname);
 
   if (
     location.pathname === "/" ||

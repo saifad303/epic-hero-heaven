@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [sidebar, setsidebar] = useState();
+  const navigate = useNavigate();
+
+  const signUpPageHandler = () => {
+    navigate("/sign-up");
+  };
+
   return (
     <div className="h-full bg-white w-full py-16 px-4">
       <div className="flex flex-col items-center justify-center">
@@ -17,6 +24,7 @@ const SignIn = () => {
           <p className="text-sm mt-4 font-medium leading-none text-gray-500">
             Don't have an account?{" "}
             <span
+              onClick={signUpPageHandler}
               tabIndex={0}
               role="link"
               aria-label="Sign up here"
@@ -69,9 +77,9 @@ const SignIn = () => {
               <hr className="w-full bg-gray-400  " />
             </div>
             <div>
-              <lable className="text-sm font-medium leading-none text-gray-800">
+              <label className="text-sm font-medium leading-none text-gray-800">
                 Email
-              </lable>
+              </label>
               <input
                 required
                 aria-label="enter email adress"
@@ -81,9 +89,9 @@ const SignIn = () => {
               />
             </div>
             <div className="mt-6  w-full">
-              <lable className="text-sm font-medium leading-none text-gray-800">
+              <label className="text-sm font-medium leading-none text-gray-800">
                 Password
-              </lable>
+              </label>
               <div className="relative flex items-center justify-center">
                 <input
                   required

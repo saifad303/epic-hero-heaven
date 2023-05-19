@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [sidebar, setsidebar] = useState();
+  const navigate = useNavigate();
+
+  const signInHandler = () => {
+    navigate("/sign-in");
+  };
+
   return (
     <div className="h-full bg-white w-full py-16 px-4">
       <div className="flex flex-col items-center justify-center">
@@ -17,6 +24,7 @@ const SignUp = () => {
           <p className="text-sm mt-4 font-medium leading-none text-gray-500">
             Have account?{" "}
             <span
+              onClick={signInHandler}
               tabIndex={0}
               role="link"
               aria-label="Sign up here"
@@ -69,9 +77,9 @@ const SignUp = () => {
               <hr className="w-full bg-gray-400  " />
             </div>
             <div className="mb-6">
-              <lable className="text-sm font-medium leading-none text-gray-800">
+              <label className="text-sm font-medium leading-none text-gray-800">
                 Name
-              </lable>
+              </label>
               <input
                 required
                 aria-label="enter email adress"
@@ -81,9 +89,9 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <lable className="text-sm font-medium leading-none text-gray-800">
+              <label className="text-sm font-medium leading-none text-gray-800">
                 Email
-              </lable>
+              </label>
               <input
                 required
                 aria-label="enter email adress"
@@ -93,9 +101,9 @@ const SignUp = () => {
               />
             </div>
             <div className="mt-6  w-full">
-              <lable className="text-sm font-medium leading-none text-gray-800">
+              <label className="text-sm font-medium leading-none text-gray-800">
                 Password
-              </lable>
+              </label>
               <div className="relative flex items-center justify-center">
                 <input
                   required

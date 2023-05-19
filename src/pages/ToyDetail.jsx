@@ -74,6 +74,15 @@ const ToyDetail = () => {
                 <span className="text-gray-600 ml-3">4 Reviews</span>
               </span>
             </div>
+            <p className="text-gray-900 mb-2 text-lg title-font font-medium">
+              <span>&#10070;</span> Seller name: My name
+            </p>
+            <p className="text-gray-900 mb-2 text-lg title-font font-medium">
+              <span>&#10070;</span> Seller email: myname@example.com
+            </p>
+            <p className="text-gray-900 mb-2 text-lg title-font font-medium">
+              <span>&#10070;</span> Quantity: 10
+            </p>
             <p className="leading-relaxed">
               Fam locavore kickstarter distillery. Mixtape chillwave tumeric
               sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
