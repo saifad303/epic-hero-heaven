@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
@@ -10,6 +11,9 @@ const NotFound = () => {
 
   return (
     <main className=" h-screen w-full flex flex-col justify-center items-center bg-white">
+      <Helmet>
+        <title>Epic Hero Heaven | 404 Not Found</title>
+      </Helmet>
       <img src="/img/batman-notfound.png" alt="" />
       <button className="mt-5" onClick={goHomeHandler}>
         <a className="relative inline-block text-sm font-medium text-[#EA6067] group active:text-[#EA6067] focus:outline-none focus:ring">

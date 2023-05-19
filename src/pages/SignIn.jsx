@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { useAuthProvider } from "../context/AuthProvider";
 import SmallSpinner from "../components/Loading/SmallSpinner";
 
@@ -71,6 +72,9 @@ const SignIn = () => {
 
   return (
     <div className="h-full bg-white w-full py-16 px-4">
+      <Helmet>
+        <title>Epic Hero Heaven | Sign In</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center">
         <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
           <p

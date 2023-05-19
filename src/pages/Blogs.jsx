@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const Blogs = () => {
   return (
     <section className="bg-white dark:bg-gray-900">
+      <Helmet>
+        <title>Epic Hero Heaven | Blogs</title>
+      </Helmet>
       <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <h2 className="mb-8 text-4xl tracking-tight font-extrabold text-slate-700 dark:text-white">
           Frequently asked questions

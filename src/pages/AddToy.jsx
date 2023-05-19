@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Rate } from "antd";
 
 const AddToy = () => {
@@ -8,6 +9,9 @@ const AddToy = () => {
 
   return (
     <div className="w-[300px] xsm:w-[490px] sm:w-[620px] lg:w-[950px] xl:w-[1200px] mx-auto mt-[100px] my-10">
+      <Helmet>
+        <title>Epic Hero Heaven | Add Toy</title>
+      </Helmet>
       <div className="max-w-lg mb-10">
         <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">
           Add a new toy

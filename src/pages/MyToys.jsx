@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 
 const MyToys = () => {
@@ -46,6 +47,9 @@ const MyToys = () => {
   ];
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-[80px]">
+      <Helmet>
+        <title>Epic Hero Heaven | My Toys</title>
+      </Helmet>
       <div className="items-start justify-between md:flex">
         <div className="max-w-lg">
           <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">

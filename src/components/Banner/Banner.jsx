@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const [state, setState] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     Aos.init();
   }, []);
+
+  const allToysNavigateHandler = () => {
+    navigate("/toys");
+  };
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -31,7 +37,10 @@ const Banner = () => {
             Extraordinary Journey of Play, Wonder, and Delight
           </p>
           <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
-            <button className="px-7 py-3 w-full bg-[#EA6067] text-white text-center rounded-md block sm:w-auto font-bold">
+            <button
+              onClick={allToysNavigateHandler}
+              className="px-7 py-3 w-full bg-[#EA6067] text-white text-center rounded-md block sm:w-auto font-bold"
+            >
               View Toys
             </button>
           </div>

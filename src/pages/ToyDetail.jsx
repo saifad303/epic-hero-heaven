@@ -1,9 +1,13 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import StarRatings from "react-star-ratings";
 
 const ToyDetail = () => {
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
+      <Helmet>
+        <title>Epic Hero Heaven | Toy Detail</title>
+      </Helmet>
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
