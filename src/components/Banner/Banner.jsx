@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Banner = () => {
   const [state, setState] = useState(false);
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   // Replace javascript:void(0) path with your path
   const navigation = [
@@ -12,7 +18,11 @@ const Banner = () => {
   return (
     <div className="bg-[#EAE4D9]/20">
       <section className="mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex md:px-8">
-        <div className="space-y-4 flex-1 sm:text-center lg:text-left">
+        <div
+          className="space-y-4 flex-1 sm:text-center lg:text-left"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        >
           <h1 className=" text-slate-700 font-bold text-4xl xl:text-5xl">
             Epic Heros Heaven Where Dreams Take Flight
           </h1>
@@ -26,7 +36,11 @@ const Banner = () => {
             </button>
           </div>
         </div>
-        <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3">
+        <div
+          className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
           <img
             src="/img/banner.png"
             className="w-full mx-auto sm:w-10/12  lg:w-full"

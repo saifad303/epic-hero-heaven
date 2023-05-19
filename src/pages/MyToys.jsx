@@ -51,7 +51,7 @@ const MyToys = () => {
           <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">
             My toys
           </h3>
-          <p className="text-slate-400 mt-2">Toys that I have entered</p>
+          <p className="text-slate-400 mt-2">Toys that I have entered.</p>
         </div>
         <div className="mt-3 md:mt-0">
           <button
@@ -71,6 +71,8 @@ const MyToys = () => {
               <th className="py-3 px-6">Sub category</th>
               <th className="py-3 px-6">Price</th>
               <th className="py-3 px-6"></th>
+              <th className="py-3 px-6"></th>
+              <th className="py-3 px-6"></th>
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
@@ -86,6 +88,14 @@ const MyToys = () => {
                     className="py-2 leading-none px-3 font-medium text-violet-700  hover:bg-gray-100 rounded-lg"
                   >
                     Update
+                  </button>
+                </td>
+                <td className="text-right px-6 whitespace-nowrap">
+                  <button
+                    href=""
+                    className="py-2 leading-none px-3 font-medium text-violet-700  hover:bg-gray-100 rounded-lg"
+                  >
+                    Delete
                   </button>
                 </td>
                 <td className="text-right px-6 whitespace-nowrap">

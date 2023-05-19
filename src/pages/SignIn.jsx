@@ -8,6 +8,11 @@ const SignIn = () => {
   const [validationError, setValidationError] = useState();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
+
+  const isViewPasswordHandler = () => {
+    setIsPasswordShow(!isPasswordShow);
+  };
 
   const signUpPageHandler = () => {
     navigate("/sign-up");
@@ -166,10 +171,13 @@ const SignIn = () => {
                   required
                   aria-label="enter Password"
                   role="input"
-                  type="password"
+                  type={isPasswordShow ? "text" : "password"}
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
-                <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
+                <div
+                  onClick={isViewPasswordHandler}
+                  className="absolute right-0 mt-2 mr-3 cursor-pointer"
+                >
                   <svg
                     width={16}
                     height={16}

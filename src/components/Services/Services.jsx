@@ -24,7 +24,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="">
+    <section className="" data-aos="fade-up" data-aos-duration="1000">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="max-w-xl mt-[90px] mx-auto space-y-3">
           <p className="text-slate-700 text-center text-3xl font-semibold sm:text-4xl">
@@ -42,7 +42,7 @@ const Services = () => {
                 key={idx}
                 className={`feature-${idx + 1} space-y-3 py-8 lg:px-12 sm:py-0`}
               >
-                <div className="w-12 h-12 border text-indigo-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 border bg-[#EA6067] rounded-full flex items-center justify-center">
                   {item.icon}
                 </div>
                 <h4 className="text-lg text-slate-700 font-semibold">
