@@ -21,12 +21,9 @@ const Banner = () => {
             Extraordinary Journey of Play, Wonder, and Delight
           </p>
           <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
-            <a
-              href=""
-              className="px-7 py-3 w-full bg-gray-700 text-gray-200 text-center rounded-md block sm:w-auto"
-            >
-              Try it out
-            </a>
+            <button className="px-7 py-3 w-full bg-[#EA6067] text-white text-center rounded-md block sm:w-auto font-bold">
+              View Toys
+            </button>
           </div>
         </div>
         <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3">

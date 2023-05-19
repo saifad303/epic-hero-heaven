@@ -1,6 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyToys = () => {
+  const navigate = useNavigate();
+
+  const viewDetailHandler = () => {
+    navigate(`/toy/12`);
+  };
+
+  const addToyHandler = () => {
+    navigate(`/add-toy`);
+  };
+
   const tableItems = [
     {
       name: "Liam James",
@@ -43,12 +54,12 @@ const MyToys = () => {
           <p className="text-slate-400 mt-2">Toys that I have entered</p>
         </div>
         <div className="mt-3 md:mt-0">
-          <a
-            href=""
+          <button
+            onClick={addToyHandler}
             className="inline-block px-4 py-2 text-white duration-150 font-medium bg-[#EA6067] rounded-lg  md:text-sm"
           >
             Add toy
-          </a>
+          </button>
         </div>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
@@ -79,7 +90,7 @@ const MyToys = () => {
                 </td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
-                    href=""
+                    onClick={viewDetailHandler}
                     className="py-2 leading-none px-3 font-medium text-red-600  hover:bg-gray-100 rounded-lg"
                   >
                     View Detail

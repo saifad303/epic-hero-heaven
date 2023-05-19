@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import Menu from "./Menu";
 import LoggedInUser from "./LoggedInUser";
 import SignInUp from "./SignInUp";
+import { useAuthProvider } from "../../context/AuthProvider";
+import SmallSpinner from "../Loading/SmallSpinner";
 
 const Header = () => {
   const [state, setState] = useState(false);
+  const { signedInUser, isLoading } = useAuthProvider();
+  const location = useLocation();
+  const navRef = useRef();
+  const { id } = useParams();
 
   useEffect(() => {
     document.onclick = (e) => {
@@ -69,8 +76,8 @@ const Header = () => {
           } `}
         >
           <Menu></Menu>
-          {/* <LoggedInUser></LoggedInUser> */}
-          <SignInUp></SignInUp>
+
+          {signedInUser ? <LoggedInUser></LoggedInUser> : <SignInUp></SignInUp>}
         </div>
       </div>
     </nav>

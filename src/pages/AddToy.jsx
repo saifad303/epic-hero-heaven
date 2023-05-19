@@ -104,7 +104,7 @@ const AddToy = () => {
           <Rate
             defaultValue={0}
             tooltips={[1, 2, 3, 4, 5]}
-            style={{ fontSize: "30px" }}
+            style={{ fontSize: "30px", color: "#EA6067" }}
             onChange={(value) => starRateHandler(value)}
           />
         </div>

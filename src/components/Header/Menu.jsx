@@ -3,7 +3,7 @@ import ActiveLink from "../ActiveLink/ActiveLink";
 
 const Menu = () => {
   return (
-    <ul className="justify-center font-bold items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
+    <ul className="justify-center font-semibold items-center space-y-6 md:flex md:space-x-4 md:space-y-0">
       <li className="text-gray-700 ">
         <ActiveLink to={"/"} className="block">
           Home

@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const AllToys = () => {
+  const navigate = useNavigate();
+
+  const viewDetailHandler = () => {
+    navigate(`/toy/12`);
+  };
+
   const tableItems = [
     {
       name: "Liam James",
@@ -66,8 +73,8 @@ const AllToys = () => {
                 <td className="px-6 py-4 whitespace-nowrap">{item.salary}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
-                    href=""
-                    className="py-2 leading-none px-3 font-medium text-red-600  hover:bg-gray-100 rounded-lg"
+                    onClick={viewDetailHandler}
+                    className="py-2 leading-none px-3 font-medium text-[#EA6067]  hover:bg-gray-100 rounded-lg"
                   >
                     View Detail
                   </button>

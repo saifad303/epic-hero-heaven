@@ -12,6 +12,7 @@ import Blogs from "./pages/Blogs.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -21,9 +22,30 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage></HomePage> },
       { path: "/toys", element: <AllToys></AllToys> },
-      { path: "/toy/:id", element: <ToyDetail></ToyDetail> },
-      { path: "/add-toy", element: <AddToy></AddToy> },
-      { path: "/my-toys", element: <MyToys></MyToys> },
+      {
+        path: "/toy/:id",
+        element: (
+          <PrivateRoute>
+            <ToyDetail></ToyDetail>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-toy",
+        element: (
+          <PrivateRoute>
+            <AddToy></AddToy>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-toys",
+        element: (
+          <PrivateRoute>
+            <MyToys></MyToys>
+          </PrivateRoute>
+        ),
+      },
       { path: "/blogs", element: <Blogs></Blogs> },
       { path: "/sign-in", element: <SignIn></SignIn> },
       { path: "/sign-up", element: <SignUp></SignUp> },

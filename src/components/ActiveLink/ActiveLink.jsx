@@ -4,12 +4,7 @@ import "./active.css";
 
 const ActiveLink = ({ to, children }) => {
   return (
-    <NavLink
-      to={to}
-      className={({ isActive }) =>
-        isActive ? "border-b-2 border-[#EA6067]" : ""
-      }
-    >
+    <NavLink to={to} className={({ isActive }) => (isActive ? "active" : "")}>
       {children}
     </NavLink>
   );
