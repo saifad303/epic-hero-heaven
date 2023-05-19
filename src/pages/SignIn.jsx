@@ -1,12 +1,67 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuthProvider } from "../context/AuthProvider";
+import SmallSpinner from "../components/Loading/SmallSpinner";
 
 const SignIn = () => {
-  const [sidebar, setsidebar] = useState();
   const navigate = useNavigate();
+  const [validationError, setValidationError] = useState();
+  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const signUpPageHandler = () => {
     navigate("/sign-up");
+  };
+
+  const from = location?.state?.from.pathname || "/";
+
+  const formRef = useRef();
+  const {
+    googleSignInProviderHandler,
+    setSignedInUser,
+    gitHubSignInProviderHandler,
+    signInWithEmailProvider,
+  } = useAuthProvider();
+
+  const googleSignInHandler = () => {
+    googleSignInProviderHandler().then((result) => {
+      setSignedInUser(result.user);
+      setValidationError("");
+      navigate(from);
+    });
+  };
+
+  const gitHubSignInHandler = () => {
+    gitHubSignInProviderHandler().then((result) => {
+      setSignedInUser(result.user);
+      setValidationError("");
+      navigate(from);
+    });
+  };
+
+  const signInFormSubmitHandler = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const formValue = formRef.current;
+    const signInFormValues = {
+      email: formValue.email.value,
+      password: formValue.password.value,
+    };
+
+    signInWithEmailProvider(signInFormValues)
+      .then((result) => {
+        setSignedInUser(result.user);
+
+        formValue.email.value = "";
+        formValue.password.value = "";
+        setValidationError("");
+        setIsLoading(false);
+        navigate(from);
+      })
+      .catch((err) => {
+        setValidationError(err.message);
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -35,6 +90,7 @@ const SignIn = () => {
             </span>
           </p>
           <button
+            onClick={googleSignInHandler}
             aria-label="Continue with google"
             role="button"
             className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
@@ -68,7 +124,11 @@ const SignIn = () => {
             </p>
           </button>
 
-          <form action="">
+          <form
+            action=""
+            ref={formRef}
+            onSubmit={(e) => signInFormSubmitHandler(e)}
+          >
             <div className="w-full flex items-center justify-between py-5">
               <hr className="w-full bg-gray-400" />
               <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
@@ -76,11 +136,18 @@ const SignIn = () => {
               </p>
               <hr className="w-full bg-gray-400  " />
             </div>
+            {validationError && (
+              <div className=" bg-rose-300 text-lg p-2 rounded-lg text-slate-800">
+                {validationError.split(":")[1]}
+              </div>
+            )}
             <div>
               <label className="text-sm font-medium leading-none text-gray-800">
                 Email
               </label>
               <input
+                name="email"
+                autoComplete="email"
                 required
                 aria-label="enter email adress"
                 role="input"
@@ -94,6 +161,8 @@ const SignIn = () => {
               </label>
               <div className="relative flex items-center justify-center">
                 <input
+                  name="password"
+                  autoComplete="current-password"
                   required
                   aria-label="enter Password"
                   role="input"
@@ -118,11 +187,13 @@ const SignIn = () => {
             </div>
             <div className="mt-8">
               <button
+                disabled={isLoading ? true : false}
+                type="submit"
                 role="button"
                 aria-label="sign in"
                 className="focus:ring-2 focus:ring-offset-2 text-sm font-semibold leading-none text-white focus:outline-none bg-[#EA6067] border rounded  py-4 w-full"
               >
-                Sign In
+                {isLoading ? <SmallSpinner></SmallSpinner> : "Sign In"}
               </button>
             </div>
           </form>
