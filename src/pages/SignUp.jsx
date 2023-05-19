@@ -1,9 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuthProvider } from "../context/AuthProvider";
+import SmallSpinner from "../components/Loading/SmallSpinner";
 
 const SignUp = () => {
-  const [sidebar, setsidebar] = useState();
+  const [validationError, setValidationError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const formRef = useRef();
   const navigate = useNavigate();
+  const {
+    googleSignInProviderHandler,
+    setSignedInUser,
+    createUserProvider,
+    updateProfileProvider,
+  } = useAuthProvider();
+
+  const googleSignInHandler = () => {
+    googleSignInProviderHandler().then((result) => {
+      setSignedInUser(result.user);
+      setValidationError("");
+      navigate("/");
+    });
+  };
+
+  const signedUpSubmitHandler = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (checkPasswordHandler()) {
+      const formValue = formRef.current;
+      const credentials = {
+        name: formValue.name.value,
+        photoUrl: formValue.photoLink.value,
+        email: formValue.email.value,
+        password: formValue.password.value,
+      };
+
+      createUserProvider(credentials)
+        .then((result) => {
+          updateDisplayNameAndPhotoUrl(
+            formValue.name.value,
+            formValue.photoLink.value
+          );
+          setValidationError("");
+          setIsLoading(false);
+          navigate("/");
+        })
+        .catch((err) => {
+          setValidationError(err.message);
+          setIsLoading(false);
+        });
+    } else {
+      setValidationError("Password should be at least 6 character long.");
+      setIsLoading(false);
+    }
+  };
+
+  const checkPasswordHandler = () => {
+    const formValue = formRef.current;
+    const checkEightCharLong = /(?=.{6,})/;
+
+    // console.log(checkEightCharLong.test(formValue.password.value));
+    if (checkEightCharLong.test(formValue.password.value)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const updateDisplayNameAndPhotoUrl = (name, url) => {
+    const formValue = formRef.current;
+    updateProfileProvider(name, url).then(() => {
+      formValue.name.value = "";
+      formValue.photoLink.value = "";
+      formValue.email.value = "";
+      formValue.password.value = "";
+      setValidationError("");
+      navigate("/");
+    });
+  };
 
   const signInHandler = () => {
     navigate("/sign-in");
@@ -35,6 +109,7 @@ const SignUp = () => {
             </span>
           </p>
           <button
+            onClick={googleSignInHandler}
             aria-label="Continue with google"
             role="button"
             className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
@@ -67,8 +142,11 @@ const SignUp = () => {
               Sign up with Google
             </p>
           </button>
-
-          <form action="">
+          <form
+            action=""
+            ref={formRef}
+            onSubmit={(e) => signedUpSubmitHandler(e)}
+          >
             <div className="w-full flex items-center justify-between py-5">
               <hr className="w-full bg-gray-400" />
               <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
@@ -76,11 +154,30 @@ const SignUp = () => {
               </p>
               <hr className="w-full bg-gray-400  " />
             </div>
+            {validationError && (
+              <div className=" bg-rose-300 text-lg p-2 rounded-lg text-slate-800">
+                {validationError}
+              </div>
+            )}
             <div className="mb-6">
               <label className="text-sm font-medium leading-none text-gray-800">
                 Name
               </label>
               <input
+                name="name"
+                required
+                aria-label="enter email adress"
+                role="input"
+                type="text"
+                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="text-sm font-medium leading-none text-gray-800">
+                photoURL
+              </label>
+              <input
+                name="photoLink"
                 required
                 aria-label="enter email adress"
                 role="input"
@@ -93,6 +190,8 @@ const SignUp = () => {
                 Email
               </label>
               <input
+                name="email"
+                autoComplete="username"
                 required
                 aria-label="enter email adress"
                 role="input"
@@ -106,6 +205,8 @@ const SignUp = () => {
               </label>
               <div className="relative flex items-center justify-center">
                 <input
+                  name="password"
+                  autoComplete="current-password"
                   required
                   aria-label="enter Password"
                   role="input"
@@ -134,7 +235,7 @@ const SignUp = () => {
                 aria-label="create my account"
                 className="focus:ring-2 focus:ring-offset-2 text-sm font-semibold leading-none text-white focus:outline-none bg-[#EA6067] border rounded  py-4 w-full"
               >
-                Create my account
+                {isLoading ? <SmallSpinner></SmallSpinner> : "Create account"}
               </button>
             </div>
           </form>
