@@ -30,7 +30,8 @@ const Banner = () => {
           data-aos-duration="1000"
         >
           <h1 className=" text-slate-700 font-bold text-4xl xl:text-5xl">
-            Epic Heros Heaven Where Dreams Take Flight
+            <span className=" text-[#EA6067]">Epic Heros Heaven</span> Where
+            Dreams Take Flight
           </h1>
           <p className="text-slate-400 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
             Toy land emporium unleash Your Imagination and Embark on an
@@ -47,12 +48,12 @@ const Banner = () => {
         </div>
         <div
           className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3"
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-duration="1000"
         >
           <img
             src="/img/banner.png"
-            className="w-full mx-auto sm:w-10/12  lg:w-full"
+            className="w-full mx-auto sm:w-full lg:w-full"
           />
         </div>
       </section>

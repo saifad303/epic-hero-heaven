@@ -1,21 +1,6 @@
 import React from "react";
 
 const Footer = () => {
-  const footerNavs = [
-    {
-      href: "",
-      name: "Home",
-    },
-    {
-      href: "",
-      name: "All Toys",
-    },
-    {
-      href: "",
-      name: "Blogs",
-    },
-  ];
-
   return (
     <footer className="pt-10  bg-[#EAE4D9]/20">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
@@ -26,18 +11,6 @@ const Footer = () => {
               Toy land emporium unleash Your Imagination and Embark on an
               Extraordinary Journey of Play, Wonder, and Delight
             </p>
-            <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
-              {footerNavs.map((item, idx) => (
-                <li
-                  key={idx}
-                  className="text-gray-800 hover:text-gray-500 duration-150"
-                >
-                  <a key={idx} href={item.href}>
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="mt-6">
             <p className="text-gray-700 font-semibold">Get the app</p>

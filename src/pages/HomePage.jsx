@@ -5,6 +5,7 @@ import Gallery from "../components/Gallery/Gallery";
 import ShopByCategory from "../components/ShopByCategory/ShopByCategory";
 import Services from "../components/Services/Services";
 import TrustedCompany from "../components/TrustedCompany/TrustedCompany";
+import Testimonials from "../components/Slick/Testimonials";
 
 const HomePage = () => {
   return (
@@ -16,7 +17,8 @@ const HomePage = () => {
       <Services></Services>
       <ShopByCategory></ShopByCategory>
       <Gallery></Gallery>
-      <TrustedCompany></TrustedCompany>
+      <Testimonials></Testimonials>
+      {/* <TrustedCompany></TrustedCompany> */}
     </div>
   );
 };
