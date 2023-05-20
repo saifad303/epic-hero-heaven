@@ -1,12 +1,36 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
+import { useAuthProvider } from "../context/AuthProvider";
+import Spinner from "../components/Loading/Spinner";
 
 const MyToys = () => {
   const navigate = useNavigate();
+  const [myToys, setMyToys] = useState([]);
+  const { apiLinkPrefix } = useAuthProvider();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const viewDetailHandler = () => {
-    navigate(`/toy/12`);
+  useEffect(() => {
+    axios
+      .get(`${apiLinkPrefix}my-toys`, {
+        headers: {
+          email: "oliver.johnson@yahoo.com",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setMyToys(res.data);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
+  const viewDetailHandler = (id) => {
+    navigate(`/toy/${id}`);
   };
 
   const addToyHandler = () => {
@@ -80,12 +104,14 @@ const MyToys = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
-            {tableItems.map((item, idx) => (
+            {myToys.map((toy, idx) => (
               <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.quantity}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.position}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.salary}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{toy.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{toy.quantity}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {toy.subcategory}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{toy.price}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
                     href=""
@@ -104,7 +130,7 @@ const MyToys = () => {
                 </td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
-                    onClick={viewDetailHandler}
+                    onClick={() => viewDetailHandler(toy._id)}
                     className="py-2 leading-none px-3 font-medium text-red-600  hover:bg-gray-100 rounded-lg"
                   >
                     View Detail
