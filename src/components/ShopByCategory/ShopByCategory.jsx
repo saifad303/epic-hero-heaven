@@ -24,10 +24,6 @@ const ShopByCategory = () => {
     });
   }, []);
 
-  console.log("marvel", marvel);
-  console.log("DC = ", dc);
-  console.log("Transformers = ", transformers);
-
   if (isLoading) {
     return <Spinner></Spinner>;
   }

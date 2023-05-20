@@ -1,6 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useAuthProvider } from "../../context/AuthProvider";
+import Spinner from "../Loading/Spinner";
 
 const Gallery = () => {
+  const [photoURL, setPhotoURL] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { apiLinkPrefix } = useAuthProvider();
+
+  useEffect(() => {
+    axios.get(`${apiLinkPrefix}gallery`).then((res) => {
+      console.log(res.data);
+      setPhotoURL(res.data);
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <div className="w-[300px] xsm:w-[490px] sm:w-[620px] lg:w-[950px] xl:w-[1200px] mx-auto">
       <div className="max-w-xl mx-auto space-y-3 mt-[130px] mb-[50px]">
@@ -14,90 +33,20 @@ const Gallery = () => {
       </div>
 
       <div className="grid grid-cols-1 xsm:grid-cols-2  md:grid-cols-3 xl:grid-cols-4 gap-4">
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg"
-            alt=""
-          />
-        </div>
-        <div data-aos="zoom-in" data-aos-duration="2000">
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg"
-            alt=""
-          />
-        </div>
+        {photoURL.map(({ imageURL }, idx) => (
+          <div
+            key={idx}
+            className=" shadow-md shadow-[#EA6067]/20 border border-[#EA6067]/50 rounded-lg p-7"
+            data-aos="zoom-in"
+            data-aos-duration="2000"
+          >
+            <img
+              className=" h-64 mx-auto max-w-full rounded-lg"
+              src={imageURL}
+              alt=""
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

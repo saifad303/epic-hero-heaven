@@ -11,7 +11,7 @@ const DCCard = ({ dcToy }) => {
   };
   return (
     <div
-      className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow "
+      className="w-full max-w-sm bg-white shadow-md shadow-[#EA6067]/20 border border-[#EA6067]/50 rounded-lg"
       data-aos="flip-left"
       data-aos-duration="1000"
     >
