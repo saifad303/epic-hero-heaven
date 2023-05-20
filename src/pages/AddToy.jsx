@@ -1,10 +1,81 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Rate } from "antd";
+import { useAuthProvider } from "../context/AuthProvider";
+import axios from "axios";
+import SmallSpinner from "../components/Loading/SmallSpinner";
+import { useNavigate } from "react-router-dom";
 
 const AddToy = () => {
+  const [rate, setRate] = useState(0);
+  const navigate = useNavigate();
+  const [isNoRate, setIsNoRate] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { signedInUser, apiLinkPrefix } = useAuthProvider();
+
   const starRateHandler = (rate) => {
     console.log(rate);
+    setRate(rate);
+  };
+
+  const toySubmitHandler = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const form = e.target;
+
+    if (rate) {
+      const name = form.name.value;
+      const imageURL = form.imgUrl.value;
+      const description = form.desc.value;
+      const subcategory = form.subcat.value;
+      const quantity = form.quantity.value;
+      const price = form.price.value;
+
+      setIsNoRate(false);
+
+      console.log("Add toy = ", {
+        name,
+        imageURL,
+        description,
+        subcategory,
+        quantity,
+        price,
+        rating: rate,
+      });
+
+      const data = {
+        name,
+        imageURL,
+        description,
+        subcategory,
+        quantity,
+        price,
+        rating: rate,
+      };
+
+      axios
+        .post(
+          `${apiLinkPrefix}toys`,
+          {
+            data,
+          },
+          {
+            headers: {
+              name: signedInUser.displayName,
+              email: signedInUser.email,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          setIsLoading(false);
+          navigate("/my-toys");
+        });
+    } else {
+      setIsNoRate(true);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -17,7 +88,33 @@ const AddToy = () => {
           Add a new toy
         </h3>
       </div>
-      <form action="">
+
+      {isNoRate && (
+        <div
+          className="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+          role="alert"
+        >
+          <svg
+            aria-hidden="true"
+            className="flex-shrink-0 inline w-5 h-5 mr-3"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clipRule="evenodd"
+            ></path>
+          </svg>
+          <span className="sr-only">Info</span>
+          <div>
+            <span className="font-medium">Error!</span> No rate has been entered
+          </div>
+        </div>
+      )}
+
+      <form action="" onSubmit={(e) => toySubmitHandler(e)}>
         <div className="mb-6">
           <label
             htmlFor="base-input"
@@ -26,6 +123,8 @@ const AddToy = () => {
             Toy name
           </label>
           <input
+            required
+            name="name"
             type="text"
             id="base-input"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -39,6 +138,8 @@ const AddToy = () => {
             Photo URL
           </label>
           <input
+            required
+            name="imgUrl"
             type="text"
             id="small-input"
             className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -52,6 +153,8 @@ const AddToy = () => {
             Detail description
           </label>
           <input
+            required
+            name="desc"
             type="text"
             id="large-input"
             className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -61,13 +164,15 @@ const AddToy = () => {
           htmlFor="countries"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Select your country
+          Select subcategory
         </label>
         <select
+          required
+          name="subcat"
           id="countries"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          <option value="0">Select sub-category</option>
+          <option value="">Select sub-category</option>
           <option value="Marvel">Marvel</option>
           <option value="DC">DC</option>
           <option value="Transformers">Transformers</option>
@@ -80,7 +185,9 @@ const AddToy = () => {
             Add quantity (Number input)
           </label>
           <input
+            required
             type="number"
+            name="quantity"
             id="small-input"
             className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
@@ -93,9 +200,11 @@ const AddToy = () => {
             Price (Number input)
           </label>
           <input
+            required
+            name="price"
             type="number"
             id="small-input"
-            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className=" appearance-none block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="flex items-center gap-5">
@@ -112,12 +221,14 @@ const AddToy = () => {
             onChange={(value) => starRateHandler(value)}
           />
         </div>
+
         <div>
           <button
+            disabled={isLoading ? true : false}
             type="submit"
             className="text-white bg-[#EA6067] font-medium rounded-full text-sm px-12 py-3 text-center mr-2 mb-2 mt-9"
           >
-            Submit
+            {isLoading ? <SmallSpinner></SmallSpinner> : "Submit"}
           </button>
         </div>
       </form>

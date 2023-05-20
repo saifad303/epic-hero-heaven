@@ -8,14 +8,14 @@ import Spinner from "../components/Loading/Spinner";
 const MyToys = () => {
   const navigate = useNavigate();
   const [myToys, setMyToys] = useState([]);
-  const { apiLinkPrefix } = useAuthProvider();
+  const { apiLinkPrefix, signedInUser } = useAuthProvider();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${apiLinkPrefix}my-toys`, {
         headers: {
-          email: "oliver.johnson@yahoo.com",
+          email: signedInUser.email,
         },
       })
       .then((res) => {

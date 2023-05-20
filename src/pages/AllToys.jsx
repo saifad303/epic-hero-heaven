@@ -22,6 +22,18 @@ const AllToys = () => {
     });
   }, []);
 
+  const searchToyNameHandler = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    axios
+      .get(`${apiLinkPrefix}search-name?toyname=${e.target.search.value}`)
+      .then((res) => {
+        console.log(res.data);
+        setToys(res.data);
+        setIsLoading(false);
+      });
+  };
+
   if (isLoading) {
     return <Spinner></Spinner>;
   }
@@ -81,7 +93,7 @@ const AllToys = () => {
           </div>
           <div className="flex-1 mt-6 md:mt-0">
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => searchToyNameHandler(e)}
               className="flex items-center gap-x-3 md:justify-end"
             >
               <div className="relative">
@@ -100,13 +112,17 @@ const AllToys = () => {
                   />
                 </svg>
                 <input
-                  type="email"
+                  name="search"
+                  type="text"
                   required
                   placeholder="Search toy"
                   className="w-full pl-12 pr-3 py-2 text-gray-500 bg-white outline-none border focus:border-[#EA6067] shadow-sm rounded-lg"
                 />
               </div>
-              <button className="block w-auto py-3 px-4 font-medium text-sm text-center text-white bg-[#EA6067]   active:shadow-none rounded-lg shadow">
+              <button
+                type="submit"
+                className="block w-auto py-3 px-4 font-medium text-sm text-center text-white bg-[#EA6067]   active:shadow-none rounded-lg shadow"
+              >
                 Search
               </button>
             </form>
@@ -150,6 +166,31 @@ const AllToys = () => {
             ))}
           </tbody>
         </table>
+        {toys.length === 0 && (
+          <div
+            className="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+            role="alert"
+          >
+            <svg
+              aria-hidden="true"
+              className="flex-shrink-0 inline w-5 h-5 mr-3"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+            <span className="sr-only">Info</span>
+            <div>
+              <span className="font-medium">Not Found!</span> No data found with
+              that name. Refresh page to load all data.
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
