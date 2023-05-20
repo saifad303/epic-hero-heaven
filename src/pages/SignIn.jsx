@@ -21,6 +21,9 @@ const SignIn = () => {
 
   const from = location?.state?.from.pathname || "/";
 
+  if (from) {
+  }
+
   const formRef = useRef();
   const {
     googleSignInProviderHandler,

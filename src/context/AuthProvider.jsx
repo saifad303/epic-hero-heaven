@@ -22,8 +22,7 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
-  // const apiLinkPrefix =
-  //   "https://the-chef-finder-server-gxu0yzpr2-saifad303.vercel.app/";
+  const apiLinkPrefix = "http://localhost:5000/";
 
   const googleSignInProviderHandler = () => {
     return signInWithPopup(auth, googleProvider);
@@ -69,6 +68,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const value = {
+    apiLinkPrefix,
     googleSignInProviderHandler,
     gitHubSignInProviderHandler,
     signedInUser,

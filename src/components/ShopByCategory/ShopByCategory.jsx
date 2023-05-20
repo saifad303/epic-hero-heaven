@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Card from "./Card";
+import axios from "axios";
+import { useAuthProvider } from "../../context/AuthProvider";
+import Spinner from "../Loading/Spinner";
+import MarvelCard from "./MarvelCard";
+import DCCard from "./DCCard";
+import TransformersCard from "./TransformersCard";
 
 const ShopByCategory = () => {
+  const { apiLinkPrefix } = useAuthProvider();
+  const [isLoading, setIsLoading] = useState(true);
+  const [marvel, setMarvel] = useState([]);
+  const [dc, setDc] = useState([]);
+  const [transformers, setTransformers] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${apiLinkPrefix}toy-subcategory`).then((res) => {
+      setMarvel(res.data.marvelResult);
+      setDc(res.data.dcResult);
+      setTransformers(res.data.transformersResult);
+      setIsLoading(false);
+    });
+  }, []);
+
+  console.log("marvel", marvel);
+  console.log("DC = ", dc);
+  console.log("Transformers = ", transformers);
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <div className="w-[300px] xsm:w-[490px] sm:w-[620px] lg:w-[950px] xl:w-[1200px] mx-auto mt-[100px]">
       <div className="max-w-xl mx-auto space-y-3 mt-[130px] mb-[40px]">
@@ -38,23 +66,26 @@ const ShopByCategory = () => {
 
         <TabPanel>
           <div className=" grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            {marvel.map((marvelToys, idx) => (
+              <MarvelCard key={idx} marvelToys={marvelToys}></MarvelCard>
+            ))}
           </div>
         </TabPanel>
         <TabPanel>
           <div className=" grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            {dc.map((dcToy, idx) => (
+              <DCCard dcToy={dcToy} key={idx}></DCCard>
+            ))}
           </div>
         </TabPanel>
         <TabPanel>
           <div className=" grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            {transformers.map((transformersToys, idx) => (
+              <TransformersCard
+                key={idx}
+                transformersToys={transformersToys}
+              ></TransformersCard>
+            ))}
           </div>
         </TabPanel>
       </Tabs>

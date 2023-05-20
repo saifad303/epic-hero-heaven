@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import StarRatings from "react-star-ratings";
+import Spinner from "../components/Loading/Spinner";
+import { useAuthProvider } from "../context/AuthProvider";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ToyDetail = () => {
+  const { apiLinkPrefix } = useAuthProvider();
+  const [toy, setToy] = useState({});
+  const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get(`${apiLinkPrefix}toy/${id}`).then((res) => {
+      console.log(res.data);
+      setToy(res.data);
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <Helmet>
@@ -12,46 +33,39 @@ const ToyDetail = () => {
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="e-commerce"
-            className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-            src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"
+            className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200 p-5"
+            src={toy.imageURL}
           />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h3 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              The Catcher in the Rye
+              {toy.name}
             </h3>
             <div className="flex mb-4">
               <span className="flex items-center">
                 <StarRatings
-                  rating={3}
+                  rating={toy.rating}
                   starDimension="20px"
                   starSpacing="2px"
                   numberOfStars={5}
                   starRatedColor="#EA6067"
                 />
-                <span className="text-gray-600 ml-3">3 Reviews</span>
+                <span className="text-gray-600 ml-3">{toy.rating} Reviews</span>
               </span>
             </div>
             <p className="text-gray-900 mb-2 text-lg title-font font-medium">
-              <span>&#10070;</span> Seller name: My name
+              <span>&#10070;</span> Seller name: {toy.seller.name}
             </p>
             <p className="text-gray-900 mb-2 text-lg title-font font-medium">
-              <span>&#10070;</span> Seller email: myname@example.com
+              <span>&#10070;</span> Seller email: {toy.seller.email}
             </p>
             <p className="text-gray-900 mb-2 text-lg title-font font-medium">
-              <span>&#10070;</span> Quantity: 10
+              <span>&#10070;</span> Quantity: {toy.quantity}
             </p>
-            <p className="leading-relaxed">
-              Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-              sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-              juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-              seitan poutine tumeric. Gastropub blue bottle austin listicle
-              pour-over, neutra jean shorts keytar banjo tattooed umami
-              cardigan.
-            </p>
+            <p className="leading-relaxed">{toy.description}</p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
             <div className="flex">
               <span className="title-font font-medium text-2xl text-gray-900">
-                $58.00
+                ${toy.price}
               </span>
             </div>
           </div>
