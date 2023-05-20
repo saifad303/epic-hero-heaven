@@ -12,6 +12,7 @@ const App = () => {
     location.pathname === "/" ||
     location.pathname === "/toys" ||
     location.pathname === `/toy/${id}` ||
+    location.pathname === `/update-toy/${id}` ||
     location.pathname === "/add-toy" ||
     location.pathname === "/my-toys" ||
     location.pathname === "/blogs" ||

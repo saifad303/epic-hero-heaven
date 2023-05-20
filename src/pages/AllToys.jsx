@@ -138,6 +138,7 @@ const AllToys = () => {
               <th className="py-3 px-6">Seller name</th>
               <th className="py-3 px-6">Sub category</th>
               <th className="py-3 px-6">Quantity</th>
+              <th className="py-3 px-6">Rating</th>
               <th className="py-3 px-6">Price</th>
               <th className="py-3 px-6"></th>
             </tr>
@@ -153,6 +154,7 @@ const AllToys = () => {
                   {toy.subcategory}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">{toy.quantity}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{toy.rating}</td>
                 <td className="px-6 py-4 whitespace-nowrap">${toy.price}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button

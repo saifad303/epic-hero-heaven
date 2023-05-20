@@ -48,6 +48,11 @@ const MyToys = () => {
     });
   };
 
+  const updateToyHandler = (id) => {
+    console.log(id);
+    navigate(`/update-toy/${id}`);
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-[80px]">
       <Helmet>
@@ -77,6 +82,7 @@ const MyToys = () => {
               <th className="py-3 px-6">Quantity</th>
               <th className="py-3 px-6">Sub category</th>
               <th className="py-3 px-6">Price</th>
+              <th className="py-3 px-6">Rating</th>
               <th className="py-3 px-6"></th>
               <th className="py-3 px-6"></th>
               <th className="py-3 px-6"></th>
@@ -90,10 +96,11 @@ const MyToys = () => {
                 <td className="px-6 py-4 whitespace-nowrap">
                   {toy.subcategory}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{toy.price}</td>
+                <td className="px-6 py-4 whitespace-nowrap">${toy.price}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{toy.rating}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
-                    href=""
+                    onClick={() => updateToyHandler(toy._id)}
                     className="py-2 leading-none px-3 font-medium text-violet-700  hover:bg-gray-100 rounded-lg"
                   >
                     Update

@@ -13,6 +13,7 @@ import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
+import UpdateToy from "./pages/UpdateToy.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -49,6 +50,14 @@ const router = createBrowserRouter([
       { path: "/blogs", element: <Blogs></Blogs> },
       { path: "/sign-in", element: <SignIn></SignIn> },
       { path: "/sign-up", element: <SignUp></SignUp> },
+      {
+        path: "/update-toy/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateToy></UpdateToy>
+          </PrivateRoute>
+        ),
+      },
       { path: "*", element: <NotFound></NotFound> },
     ],
   },
