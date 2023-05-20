@@ -37,38 +37,17 @@ const MyToys = () => {
     navigate(`/add-toy`);
   };
 
-  const tableItems = [
-    {
-      name: "Liam James",
-      quantity: "100",
-      position: "Software engineer",
-      salary: "$100K",
-    },
-    {
-      name: "Olivia Emma",
-      quantity: "100",
-      position: "Product designer",
-      salary: "$90K",
-    },
-    {
-      name: "William Benjamin",
-      quantity: "100",
-      position: "Front-end developer",
-      salary: "$80K",
-    },
-    {
-      name: "Henry Theodore",
-      quantity: "100",
-      position: "Laravel engineer",
-      salary: "$120K",
-    },
-    {
-      name: "Amelia Elijah",
-      quantity: "100",
-      position: "Open source manager",
-      salary: "$75K",
-    },
-  ];
+  const toyDeleteHandler = (id) => {
+    console.log(id);
+    axios.delete(`${apiLinkPrefix}toy/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.deletedCount > 0) {
+        const remainToy = myToys.filter((toy) => toy._id !== id);
+        setMyToys(remainToy);
+      }
+    });
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-[80px]">
       <Helmet>
@@ -122,7 +101,7 @@ const MyToys = () => {
                 </td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
-                    href=""
+                    onClick={() => toyDeleteHandler(toy._id)}
                     className="py-2 leading-none px-3 font-medium text-violet-700  hover:bg-gray-100 rounded-lg"
                   >
                     Delete
