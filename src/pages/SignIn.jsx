@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useAuthProvider } from "../context/AuthProvider";
 import SmallSpinner from "../components/Loading/SmallSpinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -21,27 +23,35 @@ const SignIn = () => {
 
   const from = location?.state?.from.pathname || "/";
 
-  if (from) {
+  const notification = () => {
+    const customToastClassName = "bg-white text-[#EA6067]";
+    toast.error("Please sign in first!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      className: customToastClassName,
+    });
+    location.state.notify = 0;
+  };
+
+  if (location?.state?.notify) {
+    notification();
   }
 
   const formRef = useRef();
   const {
     googleSignInProviderHandler,
     setSignedInUser,
-    gitHubSignInProviderHandler,
     signInWithEmailProvider,
   } = useAuthProvider();
 
   const googleSignInHandler = () => {
     googleSignInProviderHandler().then((result) => {
-      setSignedInUser(result.user);
-      setValidationError("");
-      navigate(from);
-    });
-  };
-
-  const gitHubSignInHandler = () => {
-    gitHubSignInProviderHandler().then((result) => {
       setSignedInUser(result.user);
       setValidationError("");
       navigate(from);
@@ -75,6 +85,18 @@ const SignIn = () => {
 
   return (
     <div className="h-full bg-white w-full py-16 px-4">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Helmet>
         <title>Epic Hero Heaven | Sign In</title>
       </Helmet>
