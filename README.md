@@ -1,6 +1,6 @@
 # Epic Hero Heaven
 
-Welcome to the Toy Store website, a platform for selling toys featuring famous Marvel, DC, and Transformers superheroes.
+Welcome to the ##Epic Hero Heavel, a platform for selling toys featuring famous Marvel, DC, and Transformers superheroes.
 
 ## Key Features
 
