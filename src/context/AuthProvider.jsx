@@ -22,9 +22,11 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
-  const apiLinkPrefix = "http://localhost:5000/";
+  const apiLinkPrefix =
+    "https://epic-hero-haven-server-4vojxv4x7-saifad303.vercel.app/";
 
-  // https://epic-hero-haven-server-9ufdp38ww-saifad303.vercel.app/
+  // https://epic-hero-haven-server-4vojxv4x7-saifad303.vercel.app/
+  // http://localhost:5000/
 
   const googleSignInProviderHandler = () => {
     return signInWithPopup(auth, googleProvider);

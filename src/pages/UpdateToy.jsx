@@ -110,7 +110,7 @@ const UpdateToy = () => {
 
       {isNoRate && (
         <div
-          className="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+          className="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 "
           role="alert"
         >
           <svg
@@ -137,7 +137,7 @@ const UpdateToy = () => {
         <div className="mb-6">
           <label
             htmlFor="base-input"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Toy name
           </label>
@@ -147,13 +147,13 @@ const UpdateToy = () => {
             name="name"
             type="text"
             id="base-input"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
         <div>
           <label
             htmlFor="small-input"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 "
           >
             Photo URL
           </label>
@@ -163,13 +163,13 @@ const UpdateToy = () => {
             name="imgUrl"
             type="text"
             id="small-input"
-            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500   "
           />
         </div>
         <div className="mb-6 mt-6">
           <label
             htmlFor="large-input"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 "
           >
             Detail description
           </label>
@@ -179,12 +179,12 @@ const UpdateToy = () => {
             name="desc"
             type="text"
             id="large-input"
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  "
           />
         </div>
         <label
           htmlFor="countries"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900"
         >
           Select subcategory
         </label>
@@ -193,7 +193,7 @@ const UpdateToy = () => {
           required
           name="subcat"
           id="countries"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         >
           <option value="">Select sub-category</option>
           <option value="Marvel">Marvel</option>
@@ -203,7 +203,7 @@ const UpdateToy = () => {
         <div>
           <label
             htmlFor="small-input"
-            className="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 mt-5 text-sm font-medium text-gray-900 "
           >
             Add quantity (Number input)
           </label>
@@ -213,13 +213,13 @@ const UpdateToy = () => {
             type="number"
             name="quantity"
             id="small-input"
-            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500     "
           />
         </div>
         <div>
           <label
             htmlFor="small-input"
-            className="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 mt-5 text-sm font-medium text-gray-900 "
           >
             Price (Number input)
           </label>
@@ -229,13 +229,13 @@ const UpdateToy = () => {
             name="price"
             type="number"
             id="small-input"
-            className=" appearance-none block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className=" appearance-none block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
         <div className="flex items-center gap-5">
           <label
             htmlFor="small-input"
-            className="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 mt-5 text-sm font-medium text-gray-900"
           >
             Rate:
           </label>
