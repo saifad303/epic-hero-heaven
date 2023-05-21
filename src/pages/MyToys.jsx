@@ -99,7 +99,18 @@ const MyToys = () => {
             My toys
           </h3>
           <p className="text-slate-400 mt-2">Toys that I have entered.</p>
+          <div className=" mt-6">
+            <p className=" text-slate-700 mb-2">
+              {" "}
+              <strong>Seller name: {signedInUser.displayName}</strong>
+            </p>
+            <p className=" text-slate-700">
+              {" "}
+              <strong>Seller email: {signedInUser.email}</strong>
+            </p>
+          </div>
         </div>
+
         <div className="mt-3 md:mt-0">
           <button
             onClick={addToyHandler}
@@ -107,6 +118,7 @@ const MyToys = () => {
           >
             Add toy
           </button>
+
           <select
             name=""
             id=""
@@ -125,6 +137,7 @@ const MyToys = () => {
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
               <th className="py-3 px-6">Toy name</th>
+              <th className="py-3 px-6">Description</th>
               <th className="py-3 px-6">Quantity</th>
               <th className="py-3 px-6">Sub category</th>
               <th className="py-3 px-6">Price</th>
@@ -137,7 +150,13 @@ const MyToys = () => {
           <tbody className="text-gray-600 divide-y">
             {myToys.map((toy, idx) => (
               <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">{toy.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
+                  <img src={toy.imageURL} className=" w-7" alt="" />
+                  {toy.name}
+                </td>
+                <td className="px-6 py-4">
+                  <p className="line-clamp-1">{toy.description}</p>
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap">{toy.quantity}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {toy.subcategory}
