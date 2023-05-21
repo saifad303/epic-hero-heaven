@@ -1,6 +1,6 @@
 # Epic Hero Heaven
 
-Welcome to the [https://epic-hero-heaven.web.app/](Epic Hero Heaven), a platform for selling toys featuring famous Marvel, DC, and Transformers superheroes.
+Welcome to the [https://epic-hero-heaven.web.app/](Epic Hero Heaven) a platform for selling toys featuring famous Marvel, DC, and Transformers superheroes.
 
 ## Key Features
 
