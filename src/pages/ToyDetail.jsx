@@ -33,7 +33,7 @@ const ToyDetail = () => {
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="e-commerce"
-            className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200 p-5"
+            className="lg:w-1/2 w-full object-cover object-center rounded border shadow-md shadow-[#EA6067]/50 p-5"
             src={toy.imageURL}
           />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -62,7 +62,7 @@ const ToyDetail = () => {
               <span>&#10070;</span> Quantity: {toy.quantity}
             </p>
             <p className="leading-relaxed">{toy.description}</p>
-            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
+            <div className="flex mt-6 items-center pb-5 border-b-2 border-[#EA6067]/50 mb-5"></div>
             <div className="flex">
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${toy.price}

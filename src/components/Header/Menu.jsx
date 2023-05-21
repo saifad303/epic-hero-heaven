@@ -21,7 +21,7 @@ const Menu = () => {
       </li>
       <li className="text-slate-700 ">
         <ActiveLink to={"/add-toy"} className="block">
-          Add Toy
+          Add A Toy
         </ActiveLink>
       </li>
       <li className="text-slate-700 ">

@@ -25,7 +25,7 @@ const SignIn = () => {
 
   const notification = () => {
     const customToastClassName = "bg-white text-[#EA6067]";
-    toast.error("Please sign in first!", {
+    toast.error(`Please sign in first!`, {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,

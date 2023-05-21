@@ -105,6 +105,11 @@ const AddToy = () => {
         </h3>
       </div>
 
+      <div className=" flex flex-col my-4 gap-1 text-slate-600 font-semibold">
+        <p>Seller name: {signedInUser.displayName}</p>
+        <p>Seller email: {signedInUser.email}</p>
+      </div>
+
       {isNoRate && (
         <div
           className="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50"

@@ -3,12 +3,12 @@ import { Helmet } from "react-helmet";
 
 const Blogs = () => {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white ">
       <Helmet>
         <title>Epic Hero Heaven | Blogs</title>
       </Helmet>
       <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-        <h2 className="mb-8 text-4xl tracking-tight font-extrabold text-slate-700 dark:text-white">
+        <h2 className="mb-8 text-4xl tracking-tight font-extrabold text-slate-700 ">
           ReactJS interview QnA
         </h2>
         <div className="grid pt-8 text-left border-t border-gray-200 md:gap-5 ">
@@ -30,7 +30,7 @@ const Blogs = () => {
                 What is an access token and refresh token? How do they work and
                 where should we store them on the client-side?
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 my-5">
+              <p className="text-gray-500  my-5">
                 <strong className=" text-slate-700">Access tokens</strong> play
                 a crucial role in token-based authentication by granting
                 applications permission to access an API. Once a user completes
@@ -41,7 +41,7 @@ const Blogs = () => {
                 been granted authorization and can perform actions based on the
                 specified Scope granted during authorization.
               </p>
-              <p className="text-gray-500 dark:text-gray-400 my-5">
+              <p className="text-gray-500  my-5">
                 <strong className=" text-slate-700">Refresh token</strong>{" "}
                 serves as a unique token used for acquiring additional access
                 tokens. Its purpose is to enable the retrieval of new access
@@ -76,9 +76,9 @@ const Blogs = () => {
               </ul>
             </div>
             <div className="mb-10">
-              <h3 className="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
+              <h3 className="flex items-center mb-4 text-lg font-medium text-gray-900 ">
                 <svg
-                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 "
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -128,9 +128,9 @@ const Blogs = () => {
           </div>
           <div>
             <div className="mb-10">
-              <h3 className="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
+              <h3 className="flex items-center mb-4 text-lg font-medium text-gray-900 ">
                 <svg
-                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 "
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ const Blogs = () => {
                 </svg>
                 What is express js? What is Nest JS?
               </h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 ">
                 <strong>Express.js</strong> also known as Express, is a popular
                 back-end web application framework. It specifically focuses on
                 constructing RESTful APIs using Node.js and is freely available
@@ -153,7 +153,7 @@ const Blogs = () => {
                 applications.
               </p>
               <br />
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 ">
                 <strong>NestJS</strong> is a widely used open-source back-end
                 framework designed for developing server-side applications using
                 Node.js and TypeScript. It aims to establish a robust foundation
@@ -165,9 +165,9 @@ const Blogs = () => {
               </p>
             </div>
             <div className="mb-10">
-              <h3 className="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
+              <h3 className="flex items-center mb-4 text-lg font-medium text-gray-900 ">
                 <svg
-                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 "
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -180,13 +180,56 @@ const Blogs = () => {
                 </svg>
                 What is MongoDB aggregate and how does it work?
               </h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500">
                 Aggregation operations provide a versatile set of capabilities
                 for grouping, sorting, performing calculations, and analyzing
                 data in diverse ways. These operations offer flexibility and
                 empower you to derive meaningful insights, gain deeper
                 understanding, and extract valuable information from your
                 datasets.
+              </p>
+              <p className=" my-4 text-xl font-semibold text-slate-700">
+                The aggregation framework works in these following ways
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Matching Stage ($match)</strong>: The first stage is the
+                matching stage, which filters the documents based on specific
+                conditions.
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Grouping Stage ($group)</strong>: Next is the grouping
+                stage, where documents are grouped together based on a chosen
+                key or keys. Aggregation functions such as sum, average,
+                minimum, maximum, and push are then applied to calculate values
+                for each group.
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Projection Stage ($project)</strong>: The projection
+                stage allows you to reshape the documents by selecting specific
+                fields, adding new fields, or removing existing fields, giving
+                you control over the output structure and content.
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Sorting Stage ($sort)</strong>: The sorting stage
+                arranges the documents in ascending or descending order based on
+                one or more fields.
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Limiting Stage ($limit)</strong>: The limiting stage
+                restricts the number of documents passed to the next stage,
+                helping you control the result set size.
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Skipping Stage ($skip)</strong>: The skipping stage
+                allows you to skip a certain number of documents before passing
+                the remaining ones to the next stage.
+              </p>
+              <p className=" my-5 text-gray-500">
+                <strong>Unwinding Stage ($unwind)</strong>: Finally, the
+                unwinding stage is useful when working with array fields. It
+                deconstructs the array, creating multiple documents, one for
+                each element, enabling further operations on individual array
+                elements.
               </p>
             </div>
           </div>

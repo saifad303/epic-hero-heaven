@@ -85,7 +85,7 @@ const UpdateToy = () => {
           console.log(res.data);
           setIsLoading(false);
           toast.success("Data has been updated!");
-          navigate(`/toy/${id}`);
+          navigate(`/my-toys`);
         });
     } else {
       setIsNoRate(true);

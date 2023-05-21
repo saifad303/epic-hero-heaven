@@ -15,7 +15,7 @@ const MyToys = () => {
   const [order, setOrder] = useState(1);
   const location = useLocation();
 
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     if (order) {
@@ -27,7 +27,7 @@ const MyToys = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setMyToys(res.data);
           setIsLoading(false);
         });
@@ -59,9 +59,9 @@ const MyToys = () => {
       if (result.isConfirmed) {
         // Code for deleting the product from the list
         // This could be an API call or state manipulation
-        console.log(id);
+        // console.log(id);
         axios.delete(`${apiLinkPrefix}toy/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.deletedCount > 0) {
             const remainToy = myToys.filter((toy) => toy._id !== id);
             setMyToys(remainToy);
@@ -74,15 +74,15 @@ const MyToys = () => {
   };
 
   const updateToyHandler = (id) => {
-    console.log(id);
+    // console.log(id);
     navigate(`/update-toy/${id}`);
   };
 
   const changeOrderHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const order = Number(e.target.value);
     if (order) {
-      console.log("it has value", order);
+      // console.log("it has value", order);
       setOrder(order);
     }
   };
@@ -92,7 +92,6 @@ const MyToys = () => {
       <Helmet>
         <title>Epic Hero Heaven | My Toys</title>
       </Helmet>
-      ;
       <div className="items-start justify-between md:flex">
         <div className="max-w-lg">
           <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">
@@ -136,7 +135,7 @@ const MyToys = () => {
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
-              <th className="py-3 px-6">Toy name</th>
+              <th className=" pl-[4rem] px-3">Toy name</th>
               <th className="py-3 px-6">Description</th>
               <th className="py-3 px-6">Quantity</th>
               <th className="py-3 px-6">Sub category</th>
@@ -193,7 +192,7 @@ const MyToys = () => {
         </table>
         {myToys.length === 0 && (
           <div
-            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  "
             role="alert"
           >
             No product available from this seller.

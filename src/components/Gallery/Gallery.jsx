@@ -10,7 +10,7 @@ const Gallery = () => {
 
   useEffect(() => {
     axios.get(`${apiLinkPrefix}gallery`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setPhotoURL(res.data);
       setIsLoading(false);
     });
