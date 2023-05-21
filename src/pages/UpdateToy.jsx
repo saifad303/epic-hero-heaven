@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuthProvider } from "../context/AuthProvider";
 import Spinner from "../components/Loading/Spinner";
 import SmallSpinner from "../components/Loading/SmallSpinner";
+import { toast } from "react-toastify";
 
 const UpdateToy = () => {
   const [isNoRate, setIsNoRate] = useState(false);
@@ -83,6 +84,7 @@ const UpdateToy = () => {
         .then((res) => {
           console.log(res.data);
           setIsLoading(false);
+          toast.success("Data has been updated!");
           navigate(`/toy/${id}`);
         });
     } else {

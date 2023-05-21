@@ -40,6 +40,7 @@ const SignIn = () => {
   };
 
   if (location?.state?.notify) {
+    location.state.notify = "";
     notification();
   }
 
@@ -85,18 +86,6 @@ const SignIn = () => {
 
   return (
     <div className="h-full bg-white w-full py-16 px-4">
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
       <Helmet>
         <title>Epic Hero Heaven | Sign In</title>
       </Helmet>

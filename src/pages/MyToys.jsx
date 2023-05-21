@@ -1,29 +1,38 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthProvider } from "../context/AuthProvider";
 import Spinner from "../components/Loading/Spinner";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
 
 const MyToys = () => {
   const navigate = useNavigate();
   const [myToys, setMyToys] = useState([]);
   const { apiLinkPrefix, signedInUser } = useAuthProvider();
   const [isLoading, setIsLoading] = useState(true);
+  const [order, setOrder] = useState(1);
+  const location = useLocation();
+
+  console.log(location);
 
   useEffect(() => {
-    axios
-      .get(`${apiLinkPrefix}my-toys`, {
-        headers: {
-          email: signedInUser.email,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setMyToys(res.data);
-        setIsLoading(false);
-      });
-  }, []);
+    if (order) {
+      axios
+        .get(`${apiLinkPrefix}my-toys`, {
+          headers: {
+            email: signedInUser.email,
+            order,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setMyToys(res.data);
+          setIsLoading(false);
+        });
+    }
+  }, [order]);
 
   if (isLoading) {
     return <Spinner></Spinner>;
@@ -38,12 +47,28 @@ const MyToys = () => {
   };
 
   const toyDeleteHandler = (id) => {
-    console.log(id);
-    axios.delete(`${apiLinkPrefix}toy/${id}`).then((res) => {
-      console.log(res.data);
-      if (res.data.deletedCount > 0) {
-        const remainToy = myToys.filter((toy) => toy._id !== id);
-        setMyToys(remainToy);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this product!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Code for deleting the product from the list
+        // This could be an API call or state manipulation
+        console.log(id);
+        axios.delete(`${apiLinkPrefix}toy/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            const remainToy = myToys.filter((toy) => toy._id !== id);
+            setMyToys(remainToy);
+          }
+        });
+
+        Swal.fire("Deleted!", "The product has been deleted.", "success");
       }
     });
   };
@@ -53,11 +78,21 @@ const MyToys = () => {
     navigate(`/update-toy/${id}`);
   };
 
+  const changeOrderHandler = (e) => {
+    console.log(e.target.value);
+    const order = Number(e.target.value);
+    if (order) {
+      console.log("it has value", order);
+      setOrder(order);
+    }
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-[80px]">
       <Helmet>
         <title>Epic Hero Heaven | My Toys</title>
       </Helmet>
+      ;
       <div className="items-start justify-between md:flex">
         <div className="max-w-lg">
           <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">
@@ -72,6 +107,17 @@ const MyToys = () => {
           >
             Add toy
           </button>
+          <select
+            name=""
+            id=""
+            required
+            onChange={(e) => changeOrderHandler(e)}
+            className="ml-5 border-2 border-[#EA6067] px-4 py-2 rounded-lg"
+          >
+            <option value="">Select order</option>
+            <option value="1">Ascending</option>
+            <option value="-1">Descending</option>
+          </select>
         </div>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
@@ -126,6 +172,14 @@ const MyToys = () => {
             ))}
           </tbody>
         </table>
+        {myToys.length === 0 && (
+          <div
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert"
+          >
+            No product available from this seller.
+          </div>
+        )}
       </div>
     </div>
   );

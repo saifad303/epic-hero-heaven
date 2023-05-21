@@ -5,6 +5,8 @@ import { useAuthProvider } from "../context/AuthProvider";
 import axios from "axios";
 import SmallSpinner from "../components/Loading/SmallSpinner";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddToy = () => {
   const [rate, setRate] = useState(0);
@@ -17,6 +19,18 @@ const AddToy = () => {
     console.log(rate);
     setRate(rate);
   };
+
+  // const notify = () =>
+  //   toast.success("New toy has been entered!", {
+  //     position: "top-center",
+  //     autoClose: 2000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //   });
 
   const toySubmitHandler = (e) => {
     e.preventDefault();
@@ -34,15 +48,15 @@ const AddToy = () => {
 
       setIsNoRate(false);
 
-      console.log("Add toy = ", {
-        name,
-        imageURL,
-        description,
-        subcategory,
-        quantity,
-        price,
-        rating: rate,
-      });
+      // console.log("Add toy = ", {
+      //   name,
+      //   imageURL,
+      //   description,
+      //   subcategory,
+      //   quantity,
+      //   price,
+      //   rating: rate,
+      // });
 
       const data = {
         name,
@@ -70,6 +84,7 @@ const AddToy = () => {
         .then((res) => {
           console.log(res.data);
           setIsLoading(false);
+          toast.success("Data submitted successfully!");
           navigate("/my-toys");
         });
     } else {
@@ -83,6 +98,7 @@ const AddToy = () => {
       <Helmet>
         <title>Epic Hero Heaven | Add Toy</title>
       </Helmet>
+
       <div className="max-w-lg mb-10">
         <h3 className="text-slate-700 text-xl font-bold sm:text-2xl">
           Add a new toy
